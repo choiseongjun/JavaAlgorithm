@@ -48,4 +48,9 @@ public class HamiltonianCycle {
 			return false;
 		}
 	}
+
+	private boolean isFeasible(int vertexIndex, int position) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
