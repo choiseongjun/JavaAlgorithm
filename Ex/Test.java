@@ -1,43 +1,25 @@
 package Ex;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Test {
 
+	public static int kthSmallest(Integer[] arr, int k) {
+// Sort the given array 
+		Arrays.sort(arr);
+
+// Return k'th element in  
+// the sorted array 
+		return arr[k - 1];
+	}
+
+// driver program 
 	public static void main(String[] args) {
-
-		int remaining = 3;
-		System.out.println(generateParens(remaining));
-	}
-
-	public static Set<String> generateParens(int remaining) {
-
-		Set<String> set = new HashSet<>();
-		if (remaining == 0) {
-			set.add("");
-		} else {
-			Set<String> prev = generateParens(remaining - 1);
-			for (String str : prev) {
-				for (int i = 0; i < str.length(); i++) {
-					if (str.charAt(i) == '(') {
-						String s = insertInside(str, i);
-						if (!set.contains(s)) {
-							set.add(s);
-						}
-					}
-				}
-				if(!set.contains("()"+str)) {
-					set.add("()"+str);
-				}
-			}
-		}
-		return set;
-	}
-
-	private static String insertInside(String str, int leftIndex) {
-		String left = str.substring(0, leftIndex + 1);
-		String right = str.substring(leftIndex + 1, str.length());
-		return left + "()" + right;
+		Integer arr[] = new Integer[] { 12, 3, 5, 7, 19 };
+		int k = 2;
+		System.out.print("K'th smallest element is " + kthSmallest(arr, k));
 	}
 }
