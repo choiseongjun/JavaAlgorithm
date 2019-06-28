@@ -32,4 +32,10 @@ public class CrazyBot {
 
 		return ret;
 	}
+	public static void main(String[] args) {
+		
+		CrazyBot cr=new CrazyBot();
+		cr.getProbability(1, 25, 25, 25, 25);
+		System.out.println(cr.getProbability(14, 25, 25, 25, 25));
+	}
 }
