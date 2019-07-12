@@ -19,37 +19,37 @@ public class Nqueen {
 			count++;
 			return;
 		}
-		
-		for(int i=0;i<array.length;i++) {
-			array[location]=i;
-			if(promissing(array,location))
-				nqueen(array,location+1);
+
+		for (int i = 0; i < array.length; i++) {
+			array[location] = i;
+			if (promissing(array, location))
+				nqueen(array, location + 1);
 		}
 	}
-	/** 
-	* 퀸이 배치될 수 있는지 확인 *
-	*  * @param array *
-	*   @param location *
-	*    @return 
-	*    */
+
+	/**
+	 * 퀸이 배치될 수 있는지 확인 * * @param array *
+	 * 
+	 * @param location *
+	 * @return
+	 */
 	private static boolean promissing(int[] array, int location) {
-		int curX=array[location];
-		int curY=location;
-		
-		
-		for(int i=0;i<location;i++) {
-			
-			int sX=array[i];
-			int sY=i;
-			
-			//같은열이면 안됨
-			if(sX==curX) {
+		int curX = array[location];
+		int curY = location;
+
+		for (int i = 0; i < location; i++) {
+
+			int sX = array[i];
+			int sY = i;
+
+			// 같은열이면 안됨
+			if (sX == curX) {
 				return false;
 			}
-			if(Math.abs(curX-sX)==Math.abs(curY-sY)) 
+			if (Math.abs(curX - sX) == Math.abs(curY - sY))
 				return false;
 		}
-		
+
 		return true;
 	}
 
