@@ -1,104 +1,74 @@
 package Graph;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
+
+/*
+ * 첫째 줄에 정점의 개수 N(1 ≤ N ≤ 1,000), 간선의 개수 M(1 ≤ M ≤ 10,000), 
+ * 탐색을 시작할 정점의 번호 V가 주어진다. 다음 M개의 줄에는 간선이 연결하는 두 정점의 번호가 주어진다.
+ *  어떤 두 정점 사이에 여러 개의 간선이 있을 수 있다. 입력으로 주어지는 간선은 양방향이다.
+ *  4 5 1   <정점 간선 정점의 번호
+	1 2
+	1 3
+	1 4
+	2 4
+	3 4
+ * */
 public class Boj1260 {
-	static int[] dx = { -1, 0, 1, 0 };
-	static int[] dy = { 0, -1, 0, 1 };
-	static int[][] arr;
+
+	static int m, n, v;
+	static int[][] map;
+	static boolean[] check;
 
 	public static void main(String args[]) throws Exception {
-		// BufferedReader br = new BufferedReader(new InputStreamReader(new
-		// FileInputStream("input.txt")));
+
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String[] str = br.readLine().split(" ");
-		int M = Integer.parseInt(str[0]);
-		int N = Integer.parseInt(str[1]);
-
-		arr = new int[N][M];
-
-		for (int i = 0; i < N; i++) {
-			str = br.readLine().split(" ");
-			for (int j = 0; j < M; j++) {
-				arr[i][j] = Integer.parseInt(str[j]);
-
-			}
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		v = Integer.parseInt(st.nextToken());
+		map = new int[n + 1][n + 1];
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine());
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
+			map[x][y] = map[y][x] = 1;
 		}
-		// ----------------- 입력 부 ------------------
-		BFS(N, M);
+		check = new boolean[n + 1];
+		dfs(v);
+		System.out.println();
+		check=new boolean[n+1];
+		bfs(v);
 	}
 
-	public static void BFS(int N, int M) {
-		Queue<DOT> q = new LinkedList<DOT>();
+	private static void dfs(int v) {
 
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (arr[i][j] == 1)
-					// 익은 토마토가 있는 모든 위치를 큐에 담는다.
-					q.add(new DOT(i, j));
-			}
-		}
-
-		while (!q.isEmpty()) {
-			// 익은 토마토의 상하좌우는 다음에 익기 때문에 큐에 담아야한다.
-			DOT dot = q.poll();
-			for (int i = 0; i < 4; i++) {
-				int nextX = dot.x + dx[i];
-				int nextY = dot.y + dy[i];
-
-				// 범위 밖 패스
-				if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) {
-					continue;
-				}
-				// 다음 위치가 익지 않은 토마토가 아니면 패스
-				if (arr[nextX][nextY] != 0) {
-					continue;
-				}
-				// 최대 일수를 구하기 때문에 1로 바꾸는 것이 아니라 현재 일수 +1 을 해줘야한다.
-				arr[nextX][nextY] = arr[dot.x][dot.y] + 1;
-				q.add(new DOT(nextX, nextY));
-			}
-			// print(arr, N, M); // 농장 전체 출력
-			// System.out.println();
-		}
-		int max = 0;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (arr[i][j] == 0) {
-					// 토마토가 모두 익지 못한 상황이라면 -1 을 출력한다.
-					System.out.println(-1);
-					return;
-				}
-				max = Math.max(max, arr[i][j]);
-			}
-		}
-		// 그렇지 않다면 최대값을 출력한다.
-		System.out.println(max - 1);
-
-	}
-
-	// 농장을 전체 보여주는 함수
-	public static void print(int[][] arr, int N, int M) {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				System.out.print(arr[i][j] + " ");
-			}
-			System.out.println();
+		System.out.print(v + " ");
+		check[v] = true;
+		for (int i = 1; i <= n; i++) {
+			if (map[v][i] == 1 && !check[i]) {
+				dfs(i);
+			} 
 		}
 	}
-}
-
-class DOT {
-	int x;
-	int y;
-
-	DOT(int x, int y) {
-		this.x = x;
-		this.y = y;
+	private static void bfs(int v) {
+		Queue<Integer> q=new LinkedList<Integer>();
+		q.add(v);
+		check[v]=true;
+		while(!q.isEmpty()) {
+			int next=q.poll();
+			System.out.print(next+" ");
+			for(int i=0;i<=n;i++) {
+				if(map[next][i]==1&&!check[i]) {
+					q.add(i);
+					check[i]=true;
+				}
+			}
+		}
+		
 	}
 }
