@@ -34,7 +34,7 @@ public class Boj2156 {
 					dp[i]=Max(dp[i-1],value[i]+dp[i-2],value[i]+value[i-1]+dp[i-3]);
 			}
 		}
-System.out.println(dp[T1]);
+System.out.println(dp[T]);
 	}
 
 }
