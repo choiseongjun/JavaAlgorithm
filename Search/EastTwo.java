@@ -1,7 +1,5 @@
 package Search;
 
-import java.util.Scanner;
-
 public class EastTwo {
 	 
 	   public static int solution(int[] a) {
