@@ -24,7 +24,7 @@ public class EastThree {
 			EDot d = q.poll();
 			int i = d.x;
 			int j = d.y;
-			if (i - 2 >= 0) {
+			if (i - 2 >= 0) {//현재보다 -2칸 행 예를들어 5행이면 3행
 				if (j - 2 >= 0) {                   // 현재 열에서 2칸 왼쪽으로 이동했을 때, 필드에서 벗어나지 않았을 경우
                     if (B[i - 2].charAt(j - 2) == '.') {                        // 이동할 위치[i - 2, j - 2]에 'X'가 없는 경우
                         q.add(new EDot(i-2, j-2));                                 // Enqueue
