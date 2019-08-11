@@ -16,10 +16,10 @@ public class VirusBfs {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try {
-			n = Integer.parseInt(br.readLine());
+			n = Integer.parseInt(br.readLine());//total case
 			computer = new int[n + 1][n + 1];
 			visit = new boolean[n + 1];
-			t = Integer.parseInt(br.readLine());
+			t = Integer.parseInt(br.readLine());//virus case
 			while (t-- > 0) {
 				String[] temp = br.readLine().trim().split(" ");
 				int a = Integer.parseInt(temp[0]);

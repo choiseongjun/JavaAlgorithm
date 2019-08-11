@@ -14,7 +14,7 @@ public class CheesKnight {
     /* A utility function to print solution 
        matrix sol[N][N] */
     static void printSolution(int sol[][]) { 
-        for (int x = 0; x < N; x++) { 
+        for (int x = 0; x < N; x++) {
             for (int y = 0; y < N; y++) 
                 System.out.print(sol[x][y] + " "); 
             System.out.println(); 

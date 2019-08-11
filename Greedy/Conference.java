@@ -19,30 +19,33 @@ public class Conference {
 		
 		for(int i=0;i<N;i++) {
 			StringTokenizer st=new StringTokenizer(br.readLine());
-			meeting[i][0]=Integer.parseInt(br.readLine());
-			meeting[i][1]=Integer.parseInt(br.readLine());
+			meeting[i][0]=Integer.parseInt(st.nextToken());
+			meeting[i][1]=Integer.parseInt(st.nextToken());
 		}
 		
 		Arrays.sort(meeting,new Comparator<int[]>() {
 			@Override
 			public int compare(int[] o1, int[] o2) {
-				if(o2[1]==o1[1]) {
-					return o1[0]-o2[0];
+				if(o2[1]==o1[1]) {//이부분 체크..
+					return o1[0]-o2[0];//시작값을빼버린다.
 				}
 				else return 0;
 			}
 		});
+		System.out.println(solve());
 	}
 
 	static int solve() {
 		int now=0;
 		int cnt=1;
 		
-		for(int i=0;i<N;i++) {
+		for(int i=1;i<N;i++) {
+			 //다음 회의의 시작시간이 현재 회의의 종료시간보다 작으면 continue
 			if(meeting[i][0]<meeting[now][1]) continue;
 			cnt++;
 			now=i;
 		}
 		return cnt;
+	
 	}
 }
