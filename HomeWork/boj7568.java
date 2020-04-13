@@ -33,7 +33,7 @@ public class boj7568 {
 			
 		}
 		for(int i=0;i<N;i++) {
-			System.out.println(rank[i]);
+			System.out.print(rank[i]+" ");
 		}
 	}
 }

@@ -3,34 +3,30 @@ import java.util.Scanner;
 
 public class T {
 
+	static int n;
+	
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
-		int i,min=0,n=sc.nextInt(),arr[]=new int[n+1];
-		
-		for(i=1;i<=n;i++) {
-			arr[i]=sc.nextInt();
-		}
-		Sort(arr);
-		for( i=1;i<=n;i++) {
-			arr[i]=arr[i-1]+arr[i];
-			min+=arr[i];
-		}
-	
-	}
-
-	private static void Sort(int[] arr) {
-
-		int tmp=0;
-		for(int i=0;i<arr.length;i++)
-		{
-			for(int j=0;j<arr.length;j++) {
-				if(arr[j]>arr[i]) {
-					tmp=arr[i];
-					arr[i]=arr[j];
-					arr[j]=tmp;
-				}
-				
+		n=sc.nextInt();
+		for(int i=1;i<n;i++) {
+			if(n==solve(String.valueOf(i))) {
+				System.out.println(i);
+				return;
 			}
 		}
+		System.out.println(0);
 	}
+
+	private static int solve(String num) {
+		
+		int len=num.length();
+		int sum=Integer.parseInt(num);
+			for(int i=0;i<len;i++) {
+				System.out.println(num.charAt(i)-'0');
+				sum+=num.charAt(i)-'0';
+			}
+		return sum;
+	}
+
+
 }

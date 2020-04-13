@@ -1,24 +1,21 @@
 package HomeWork;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class boj1436 {
 
 	  public static void main(String[] args) throws Exception {
-	        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	 
-	        int N = Integer.parseInt(br.readLine());
-	        int num = 0;
-	 
-	        while(N > 0) {
-	            num++;
-	            String str = Integer.toString(num);   // int to string 형변환
-	 
-	            if(str.contains("666")) 
-	                N--;
+	        Scanner sc=new Scanner(System.in);
+	        int n=sc.nextInt();
+	        int i=665;
+	        int cnt=0;
+	        while(true) {
+	        	if(String.valueOf(++i).contains("666")) {
+	        		cnt++;
+	        	}
+	        	if(cnt==n) break;
 	        }
-	 
-	        System.out.println(num);
+	        System.out.println(i);
 	    }
+	 
 }
