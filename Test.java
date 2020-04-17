@@ -3,18 +3,21 @@ import java.util.Scanner;
 public class Test {
 
 	public static void main(String[] args) {
-		String n="ABCSD2348";
-		char str[]=n.toCharArray();
-		char tmp;
-		System.out.println(n);
-		int len=str.length;
+		String[] s= {"sun", "bed", "car"};
+		int n =1;
+		System.out.println(solution(s,n));
 		
-		for(int i=0;i<len/2;i++) {
-			tmp=str[i];
-			str[i]=str[len-i-1];
-			str[len-i-1]=tmp;
+	}
+	public static String[] solution(String[] strings, int n) {
+		String temp ="";
+		for(int i=0;i<strings.length-1;i++) {
+			for(int j=i+1;j<strings.length;j++) {
+				System.out.println(strings[j]);
+			}
+			
 		}
-		n=new String(str);
-		System.out.println(n);
+		
+		
+		return strings;
 	}
 }
