@@ -2,41 +2,52 @@ package Sort;
 
 public class QuickSort {
 
-	public static int partition(int arr[], int left, int right) {
-
-		int pivot = arr[(left + right) / 2];
-
-		while (left < right) {
-			while ((arr[left] < pivot) && (left < right))
-				left++;
-			while ((arr[right] > pivot) && (left < right))
-				right--;
-			if (left < right) {
-				int temp = arr[left];
-				arr[left] = arr[right];
-				arr[right] = temp;
-			}
-		}
-		return left;
+	private static void quickSort(int[] arr) {
+		quickSort(arr, 0, arr.length - 1);
 	}
 
-	public static void quickSort(int[] arr, int left, int right) {
-
-		if (left < right) {
-			int pivotNewIndex = partition(arr, left, right);
-			quickSort(arr, left, pivotNewIndex - 1);
-			quickSort(arr, pivotNewIndex + 1, right);
+	private static void quickSort(int[] arr, int start, int end) {
+		int part2 = partition(arr, start, end);
+		if (start < part2 - 1) {
+			quickSort(arr, start, part2 - 1);
 		}
+		if (part2 < end) {
+			quickSort(arr, part2, end);
+		}
+	}
+
+	private static int partition(int[] arr, int start, int end) {
+		int pivot = arr[(start + end) / 2];
+		while (start < end) {
+			while (arr[start] < pivot) start++;
+			while (arr[end] > pivot) end--;
+			if (start <= end) {
+				swap(arr, start, end);
+				start++;
+				end--;
+			}
+		}
+		return start;
+	}
+
+	private static void swap(int[] arr, int start, int end) {
+		int tmp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = tmp;
+	}
+
+	private static void printArray(int[] arr) {
+		for (int data : arr) {
+			System.out.print(data + " ,");
+		}
+		System.out.println();
 	}
 
 	public static void main(String[] args) {
-		int[] arrs = { 69, 10, 30, 2, 16, 8, 31, 22 };
-		quickSort(arrs, 0, arrs.length - 1);
-		System.out.println("결과");
-
-		for (int i : arrs) {
-			System.out.print(i + " ");
-		}
+		int[] arr = { 69, 10, 30, 2, 16, 8, 31, 22 };
+		printArray(arr);
+		quickSort(arr);
+		printArray(arr);
 
 	}
 }
