@@ -18,7 +18,10 @@ public class FriendCircles {
 		Stack<Point> stack = new Stack<>();
 		for (int i = 0; i < M.length; i++) {
 			if (! visited[i]) {
-				for (int j = M.length - 1; j >= 0; j--) stack.push(new Point(i, j));
+				for (int j = M.length - 1; j >= 0; j--)
+					{	System.out.println(i+","+j);
+						stack.push(new Point(i, j));
+					}
 				while (!stack.isEmpty()) {
 					Point o = stack.pop();
 					if (M[o.x][o.y] == 1 && !visited[o.y]) {
